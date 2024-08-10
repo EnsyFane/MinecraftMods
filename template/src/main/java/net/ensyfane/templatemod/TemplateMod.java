@@ -1,4 +1,4 @@
-package net.ensyfane.choppingblock;
+package net.ensyfane.templatemod;
 
 import com.mojang.logging.LogUtils;
 import net.minecraftforge.api.distmarker.Dist;
@@ -16,14 +16,14 @@ import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import org.slf4j.Logger;
 
 // The value here should match an entry in the META-INF/mods.toml file
-@Mod(net.ensyfane.choppingblock.ChoppingBlockMod.MOD_ID)
-public class ChoppingBlockMod
+@Mod(net.ensyfane.templatemod.TemplateMod.MOD_ID)
+public class TemplateMod
 {
     // Define mod id in a common place for everything to reference
-    public static final String MOD_ID = "chopping_block";
+    public static final String MOD_ID = "template_mod";
     // Directly reference a slf4j logger
     private static final Logger LOGGER = LogUtils.getLogger();
-    public ChoppingBlockMod()
+    public TemplateMod()
     {
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
 
