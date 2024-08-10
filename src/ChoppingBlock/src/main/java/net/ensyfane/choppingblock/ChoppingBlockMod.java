@@ -1,6 +1,11 @@
 package net.ensyfane.choppingblock;
 
 import com.mojang.logging.LogUtils;
+import net.ensyfane.choppingblock.block.ModBlocks;
+import net.ensyfane.choppingblock.entity.ChoppingBlockEntityRenderer;
+import net.ensyfane.choppingblock.item.ModItems;
+import net.minecraft.client.renderer.blockentity.BlockEntityRenderers;
+import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.BuildCreativeModeTabContentsEvent;
@@ -27,6 +32,9 @@ public class ChoppingBlockMod
     {
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
 
+        ModItems.register(modEventBus);
+        ModBlocks.register(modEventBus);
+
         // Register the commonSetup method for modloading
         modEventBus.addListener(this::commonSetup);
 
@@ -47,6 +55,10 @@ public class ChoppingBlockMod
     // Add the example block item to the building blocks tab
     private void addCreative(BuildCreativeModeTabContentsEvent event)
     {
+        if (event.getTabKey() == CreativeModeTabs.TOOLS_AND_UTILITIES)
+        {
+            event.accept(ModBlocks.ChoppingBlock);
+        }
     }
 
     // You can use SubscribeEvent and let the Event Bus discover methods to call
@@ -62,6 +74,7 @@ public class ChoppingBlockMod
         @SubscribeEvent
         public static void onClientSetup(FMLClientSetupEvent event)
         {
+            BlockEntityRenderers.register(ModBlocks.ChoppingBlockEntity.get(), ChoppingBlockEntityRenderer::new);
         }
     }
 }
