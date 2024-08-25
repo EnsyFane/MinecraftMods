@@ -2,6 +2,7 @@ package net.ensyfane.choppingblock;
 
 import com.mojang.logging.LogUtils;
 import net.ensyfane.choppingblock.block.ModBlocks;
+import net.ensyfane.choppingblock.config.Config;
 import net.ensyfane.choppingblock.entity.ChoppingBlockEntityRenderer;
 import net.ensyfane.choppingblock.item.ModItems;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderers;
@@ -45,7 +46,7 @@ public class ChoppingBlockMod
         modEventBus.addListener(this::addCreative);
 
         // Register our mod's ForgeConfigSpec so that Forge can create and load the config file for us
-        ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, Config.SPEC);
+        ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, Config.SPEC, "chopping_block.common.toml");
     }
 
     private void commonSetup(final FMLCommonSetupEvent event)
